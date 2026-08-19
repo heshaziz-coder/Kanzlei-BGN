@@ -450,6 +450,13 @@ section{padding:6rem 0}
 /* ── STANDORTE ── */
 .standorte{background:var(--white)}
 .standorte-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+@media(min-width:769px){
+  /* Nur ein Standort (Karte) vorhanden -> zentriert statt linksbündig in der 2-Spalten-Grid */
+  .standorte-grid:has(.stt-card:only-child){
+    grid-template-columns:min(560px,100%);
+    justify-content:center;
+  }
+}
 .stt-card{background:var(--cream);border:1px solid var(--border);overflow:hidden}
 .stt-head{padding:1.2rem 1.4rem;background:var(--white);border-bottom:1px solid var(--border)}
 .stt-badge{
@@ -689,7 +696,7 @@ footer{background:var(--navy);padding:4rem 0 2rem}
   #nav.solid .nav-logo img{ height:32px !important }
 
   /* ── HERO ── */
-  .hero{ min-height:auto }
+  .hero{ min-height:auto; padding-bottom:0 !important }
   .hero-inner{
     grid-template-columns:1fr !important;
     gap:2rem !important;
@@ -965,7 +972,7 @@ footer{background:var(--navy);padding:4rem 0 2rem}
 @media(max-width:768px){
   .hero-left-content {
     max-width: 100% !important;
-    padding-left: var(--pad) !important;
+    padding-left: 0 !important;
     padding-right: var(--pad) !important;
   }
   .hero-left-content .hero-eyebrow {
@@ -1067,19 +1074,22 @@ footer{background:var(--navy);padding:4rem 0 2rem}
   min-height: 100vh;
   position: relative;
   overflow: hidden;
+  gap: clamp(2.5rem, 7vh, 4rem);
+  padding-bottom: clamp(11rem, 21vh, 15rem) !important;
 }
 .hero-outer {
   position: relative; z-index: 2;
   width: 100%;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 var(--pad);
+  padding: 0 var(--pad) 0 0;
 }
 .hero-left-content {
   width: 420px;
   max-width: 100%;
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center;
+  display: flex; flex-direction: column; align-items: flex-start;
+  text-align: left;
+  padding-left: 0;
   animation: fadeUp .9s ease both;
 }
 .hero-left-content .hero-eyebrow {
@@ -1120,9 +1130,9 @@ footer{background:var(--navy);padding:4rem 0 2rem}
 .btn-hero-wide:hover { background: var(--teal2) }
 
 @media(max-width:768px){
-  .hero-left-content { width: 100%; align-items: center; text-align: center; }
+  .hero-left-content { width: 100%; align-items: flex-start; text-align: left; }
   .hero-left-content .hero-sub { white-space: normal; font-size: .95rem; }
-  .hero-left-content .hero-eyebrow { white-space: nowrap; justify-content: center; }
+  .hero-left-content .hero-eyebrow { white-space: nowrap; justify-content: flex-start; }
   .cta-band-btns { justify-content: center; }
 }
 
@@ -1828,7 +1838,7 @@ section {
 <section class="standorte" id="standorte">
   <div class="inner">
     <div class="sec-head">
-      <div class="sec-label">Weitere Standorte</div>
+      <div class="sec-label">Weiterer Standort</div>
       <h2>Auch außerhalb Lüdenscheids erreichbar</h2>
       </div>
     <div class="standorte-grid">
